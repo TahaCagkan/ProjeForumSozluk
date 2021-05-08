@@ -1,4 +1,6 @@
-﻿using ProjeForumSozluk.DataAccessLayer.Concrete.Repositories;
+﻿using ProjeForumSozluk.BusinessLayer.Abstract;
+using ProjeForumSozluk.DataAccessLayer.Abstract;
+using ProjeForumSozluk.DataAccessLayer.Concrete.Repositories;
 using ProjeForumSozluk.EntityLayer.Concrete;
 using System;
 using System.Collections.Generic;
@@ -8,25 +10,26 @@ using System.Threading.Tasks;
 
 namespace ProjeForumSozluk.BusinessLayer.Concrete
 {
-    public class CategoryManager
+    public class CategoryManager : ICategoruService
     {
-        GenericRepository<Category> repo = new GenericRepository<Category>();
+        
+        ICategoryDal _categoryDal;
 
-        public List<Category> GetAllBL()
+        public CategoryManager(ICategoryDal categoryDal)
         {
-            return repo.List();
+            _categoryDal = categoryDal;
         }
 
-        public void CategoryAddBL(Category category)
+        public void CategoryAdd(Category category)
         {
-            if(category.CategoryName == "" || category.CategoryName.Length<=3 || category.CategoryDescription=="" || category.CategoryName.Length >=51)
-            {
-                //hata mesajı
-            }
-            else
-            {
-                repo.Insert(category);
-            }
+            _categoryDal.Insert(category);
         }
+
+        public List<Category> GetList()
+        {
+            return _categoryDal.List();
+        }
+
+
     }
 }
