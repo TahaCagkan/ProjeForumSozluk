@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProjeForumSozluk.EntityLayer.Abstarct;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -7,13 +8,14 @@ using System.Threading.Tasks;
 
 namespace ProjeForumSozluk.EntityLayer.Concrete
 {
-    public class Heading
+    public class Heading : IEntity
     {
         [Key]
         public int HeadingID { get; set; }
         [StringLength(50)]
         public string HeadingName { get; set; }
         public DateTime HeadingDate { get; set; }
+        public bool HeadingStatus { get; set; }
 
         //Category
         public int CategoryID { get; set; }

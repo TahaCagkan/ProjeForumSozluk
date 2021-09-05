@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProjeForumSozluk.EntityLayer.Abstarct;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ProjeForumSozluk.EntityLayer.Concrete
 {
-    public class Contact
+    public class Contact : IEntity
     {
         [Key]
         public int ContactID { get; set; }
